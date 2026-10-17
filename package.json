@@ -1,13 +1,19 @@
 {
-  "name": "site-for-order-2",
+  "name": "kdscala-ltd-website",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "KD Scala Ltd — Reliable Mechanical & HVAC Services across London and Essex",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "keywords": [
+    "hvac",
+    "mechanical-engineering",
+    "london",
+    "air-conditioning",
+    "heating"
+  ],
+  "author": "KD Scala Ltd",
+  "license": "UNLICENSED",
+  "private": true
 }
