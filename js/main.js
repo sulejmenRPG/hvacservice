@@ -2,15 +2,45 @@
    MAIN.JS — KD SCALA LTD
    =========================== */
 
-// --- Navbar scroll effect ---
+// --- Smart Navbar: hide on scroll down, show on scroll up ---
 const navbar = document.getElementById('navbar');
+let lastScrollY = window.scrollY;
+let scrollTicking = false;
+
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (!scrollTicking && navbar) {
+    window.requestAnimationFrame(() => {
+      const currentScrollY = window.scrollY;
+
+      // Scrolled styling
+      if (currentScrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      // Do not hide if mobile menu is open
+      const isMenuOpen = navbar.classList.contains('menu-open');
+
+      // Smart hide / reveal logic
+      if (!isMenuOpen && currentScrollY > 80) {
+        if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY > 6)) {
+          // Scrolling DOWN -> hide header
+          navbar.classList.add('nav-hidden');
+        } else if (lastScrollY - currentScrollY > 6) {
+          // Scrolling UP -> reveal header
+          navbar.classList.remove('nav-hidden');
+        }
+      } else {
+        navbar.classList.remove('nav-hidden');
+      }
+
+      lastScrollY = Math.max(0, currentScrollY);
+      scrollTicking = false;
+    });
+    scrollTicking = true;
   }
-});
+}, { passive: true });
 
 // --- Mobile burger menu ---
 const burger = document.getElementById('navBurger');
@@ -20,7 +50,10 @@ if (burger && navLinks) {
   const closeMenu = () => {
     navLinks.classList.remove('open');
     burger.classList.remove('open');
-    if (navbar) navbar.classList.remove('menu-open');
+    if (navbar) {
+      navbar.classList.remove('menu-open');
+      navbar.classList.remove('nav-hidden');
+    }
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
