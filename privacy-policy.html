@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Privacy Policy — KD Scala Ltd | London HVAC Services</title>
-  <meta name="description" content="Privacy Policy for KD Scala Ltd. Information about how we collect, use, and protect your data in compliance with UK GDPR." />
+  <title>Privacy Policy — KD Scala Ltd | London Mechanical &amp; HVAC</title>
+  <meta name="description" content="Privacy Policy for KD Scala Ltd. Details on how we collect, store, and process customer data in compliance with the UK GDPR." />
   <meta name="robots" content="noindex, follow" />
 
   <!-- Fonts & Icons -->
@@ -19,155 +19,284 @@
   <link rel="apple-touch-icon" href="kdscala_ltd.png" />
 
   <style>
-    .legal-page {
-      padding: 140px 0 80px;
-      background: var(--navy-dark);
-      color: var(--white);
-      min-height: 80vh;
-    }
-    .legal-content {
-      max-width: 860px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-lg);
-      padding: 48px;
-    }
-    @media (max-width: 768px) {
-      .legal-content {
-        padding: 28px 20px;
-      }
-    }
-    .legal-content h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      margin-bottom: 8px;
-      color: var(--white);
-    }
-    .legal-meta {
-      font-size: 0.9rem;
-      color: var(--teal);
-      margin-bottom: 32px;
-      padding-bottom: 24px;
+    /* Dedicated Legal Page Styles */
+    .legal-hero {
+      padding: 140px 0 60px;
+      background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 100%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
     }
-    .legal-content h2 {
-      font-size: 1.35rem;
+    .legal-hero-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .legal-title {
+      font-size: clamp(2.4rem, 4.5vw, 3.4rem);
       color: var(--white);
-      margin: 32px 0 12px;
+      margin: 14px 0 16px;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
     }
-    .legal-content p, .legal-content li {
+    .legal-lead {
+      font-size: 1.1rem;
       color: rgba(255, 255, 255, 0.75);
-      line-height: 1.7;
-      font-size: 0.95rem;
-      margin-bottom: 14px;
+      line-height: 1.65;
+      max-width: 720px;
+      margin-bottom: 28px;
     }
-    .legal-content ul {
-      padding-left: 24px;
-      margin-bottom: 18px;
+    .legal-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-size: 0.88rem;
+      color: var(--teal);
+      font-weight: 500;
     }
-    .legal-back-btn {
+    .legal-meta-row span {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--teal);
-      font-weight: 600;
-      margin-bottom: 24px;
-      font-size: 0.95rem;
-      transition: var(--transition);
+      background: rgba(14, 165, 201, 0.08);
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(14, 165, 201, 0.2);
     }
-    .legal-back-btn:hover {
+
+    .legal-body-section {
+      background: var(--navy-dark);
+      padding: 70px 0 100px;
       color: var(--white);
-      transform: translateX(-4px);
+    }
+    .legal-document {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Company Info Card */
+    .company-info-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin: 32px 0 48px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .company-info-item label {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .company-info-item p {
+      margin: 0;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Legal Content Typography */
+    .legal-document h2 {
+      font-size: 1.45rem;
+      color: var(--white);
+      margin: 44px 0 16px;
+      font-family: var(--font-heading);
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .legal-document h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+    .legal-document p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.75;
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    .legal-document ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .legal-document li {
+      position: relative;
+      padding-left: 28px;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .legal-document li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--teal);
+      font-size: 0.85rem;
+    }
+    .legal-document strong {
+      color: var(--white);
     }
   </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar" id="navbar">
-    <div class="nav-container container">
+  <header class="navbar scrolled" id="navbar">
+    <div class="nav-inner container">
       <a href="/" class="nav-logo" aria-label="KD Scala Ltd Home">
         <img src="kdscala_ltd.png" alt="KD Scala Ltd Logo" class="nav-logo-img" width="140" height="52" />
       </a>
       <div class="nav-actions">
-        <a href="/" class="btn-primary" style="padding: 10px 22px; font-size: 0.9rem;">
+        <a href="/" class="btn-primary" style="padding: 10px 22px; font-size: 0.88rem;">
           <i class="fa-solid fa-arrow-left" style="margin-right: 6px;"></i> Back to Website
         </a>
       </div>
     </div>
   </header>
 
-  <!-- CONTENT -->
-  <main class="legal-page">
-    <div class="container">
-      <div class="legal-content">
-        <a href="/" class="legal-back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-        <h1>Privacy Policy</h1>
-        <div class="legal-meta">Last Updated: October 2025 · Compliant with UK GDPR and Data Protection Act 2018</div>
-
-        <h2>1. Company Information</h2>
-        <p>This privacy notice is provided by <strong>KD Scala Ltd</strong> ("we", "us", or "our").</p>
-        <ul>
-          <li><strong>Company Registration Number:</strong> 14398128 (Registered in England &amp; Wales)</li>
-          <li><strong>Registered Office:</strong> 102 Heron Way, Upminster, England, RM14 1EF</li>
-          <li><strong>Primary Telephone:</strong> +44 7931 130886</li>
-          <li><strong>Website:</strong> <a href="https://hvacserviceuk.netlify.app/" style="color: var(--teal);">https://hvacserviceuk.netlify.app/</a></li>
-        </ul>
-
-        <h2>2. Information We Collect</h2>
-        <p>When you contact us, request a quote, or book an emergency call-out through our website, we may collect the following personal information:</p>
-        <ul>
-          <li><strong>Identity Data:</strong> Full name.</li>
-          <li><strong>Contact Data:</strong> Email address, telephone number, and property address (where site visits are requested).</li>
-          <li><strong>Inquiry Details:</strong> Requested service type (Air Conditioning, Heating, Ventilation, Irrigation, Emergency) and any project details you describe in your message.</li>
-          <li><strong>Technical Data:</strong> Basic browser metadata necessary for security, spam prevention (Honeypot/Netlify Forms), and website functionality.</li>
-        </ul>
-
-        <h2>3. How We Use Your Information</h2>
-        <p>We process your personal information strictly for legitimate business purposes:</p>
-        <ul>
-          <li>To respond to your inquiries and provide accurate quotes.</li>
-          <li>To arrange engineer call-outs, inspections, and maintenance visits across London.</li>
-          <li>To maintain customer service records and provide ongoing service support.</li>
-          <li>To prevent fraudulent submissions and ensure website security.</li>
-        </ul>
-
-        <h2>4. Legal Basis for Processing (UK GDPR)</h2>
-        <p>Under the UK General Data Protection Regulation (UK GDPR), our legal basis for collecting and processing your data is:</p>
-        <ul>
-          <li><strong>Performance of a Contract / Pre-contractual Steps:</strong> Taking steps at your request prior to entering into a contract (e.g., preparing a quotation or booking an engineer).</li>
-          <li><strong>Legitimate Interests:</strong> Operating and managing our mechanical engineering business efficiently and responding to inquiries.</li>
-          <li><strong>Legal Obligation:</strong> Complying with applicable UK trade, safety, and accounting regulations.</li>
-        </ul>
-
-        <h2>5. Data Sharing and Third Parties</h2>
-        <p><strong>We never sell, trade, or rent your personal data to third parties.</strong> We only share information with:</p>
-        <ul>
-          <li>Our authorized, certified engineers and technical staff directly involved in fulfilling your service.</li>
-          <li>Trusted infrastructure service providers (such as our hosting and secure form processing platforms) who adhere to strict data security standards.</li>
-        </ul>
-
-        <h2>6. Data Security &amp; Retention</h2>
-        <p>We implement appropriate technical and organisational security measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction. We retain your contact details only for as long as necessary to complete your inquiry, maintain service warranties, or satisfy statutory record-keeping obligations.</p>
-
-        <h2>7. Your Legal Rights</h2>
-        <p>Under UK data protection law, you have rights including:</p>
-        <ul>
-          <li><strong>Right of access:</strong> You can ask us for copies of your personal information.</li>
-          <li><strong>Right to rectification:</strong> You can ask us to correct information you think is inaccurate.</li>
-          <li><strong>Right to erasure:</strong> You can ask us to delete your personal data in certain circumstances.</li>
-          <li><strong>Right to restriction:</strong> You can ask us to restrict the processing of your data.</li>
-        </ul>
-        <p>If you wish to exercise any of these rights, please contact us by phone at <strong>+44 7931 130886</strong> or by writing to our registered office address in Upminster.</p>
+  <!-- HERO -->
+  <section class="legal-hero">
+    <div class="container legal-hero-inner">
+      <span class="section-tag">Legal &amp; Compliance</span>
+      <h1 class="legal-title">Privacy Policy</h1>
+      <p class="legal-lead">This policy outlines how KD Scala Ltd collects, uses, and safeguards personal data obtained through our website, in strict compliance with the UK General Data Protection Regulation (UK GDPR) and Data Protection Act 2018.</p>
+      
+      <div class="legal-meta-row">
+        <span><i class="fa-solid fa-calendar-check"></i> Last Updated: October 2025</span>
+        <span><i class="fa-solid fa-shield-halved"></i> UK GDPR Compliant</span>
+        <span><i class="fa-solid fa-building"></i> Company No. 14398128</span>
       </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENT CONTENT -->
+  <main class="legal-body-section">
+    <div class="container legal-document">
+
+      <!-- Company Quick Info Card -->
+      <div class="company-info-card">
+        <div class="company-info-item">
+          <label>Company Name</label>
+          <p>KD Scala Ltd</p>
+        </div>
+        <div class="company-info-item">
+          <label>Company Registration</label>
+          <p>14398128 (England &amp; Wales)</p>
+        </div>
+        <div class="company-info-item">
+          <label>Registered Office</label>
+          <p>102 Heron Way, Upminster,<br />England, RM14 1EF</p>
+        </div>
+        <div class="company-info-item">
+          <label>Direct Phone</label>
+          <p><a href="tel:+447931130886" style="color: var(--teal); text-decoration: none;">+44 7931 130886</a></p>
+        </div>
+      </div>
+
+      <h2>1. General Introduction</h2>
+      <p>KD Scala Ltd ("we", "us", "our") is dedicated to protecting and respecting your personal privacy. This Privacy Notice describes our privacy practices regarding the collection, handling, and protection of information submitted by customers and website visitors.</p>
+
+      <h2>2. What Information We Collect</h2>
+      <p>When you interact with our website, request an engineering quotation, or book an emergency call-out, we may collect the following details:</p>
+      <ul>
+        <li><strong>Identity Information:</strong> Full name.</li>
+        <li><strong>Contact Information:</strong> Email address, mobile telephone number, and installation/property address (where on-site inspection or service is requested).</li>
+        <li><strong>Service Inquiries:</strong> Selected trade service (Air Conditioning, Heating &amp; Plumbing, Ventilation, Irrigation Systems, or Emergency support) and message notes.</li>
+        <li><strong>Technical Metadata:</strong> Non-personally identifiable technical information (such as browser user-agent and IP logs) processed strictly for site security and anti-spam protection.</li>
+      </ul>
+
+      <h2>3. Purpose and Legal Basis for Processing</h2>
+      <p>Under the UK GDPR, we only collect and process personal data where there is a lawful basis. We use your data to:</p>
+      <ul>
+        <li><strong>Perform Services &amp; Prepare Quotes:</strong> Fulfill your request for technical estimates, site visits, or maintenance contracts.</li>
+        <li><strong>Emergency Call-Outs:</strong> Rapidly dispatch engineers to address critical heating, plumbing, or air conditioning failures across London.</li>
+        <li><strong>Legitimate Interests:</strong> Maintain operational records and ensure high standards of quality assurance.</li>
+        <li><strong>Statutory Obligations:</strong> Meet applicable legal, health &amp; safety, and accounting standards in England &amp; Wales.</li>
+      </ul>
+
+      <h2>4. Data Storage &amp; Third-Party Sharing</h2>
+      <p>We respect your privacy and never sell, lease, or distribute customer details to advertisers or external marketing lists. We share data only with:</p>
+      <ul>
+        <li><strong>Certified Field Engineers:</strong> Assigned technicians directly responsible for delivering your HVAC or plumbing service.</li>
+        <li><strong>Secure Cloud Infrastructure:</strong> Regulated service providers (such as hosting and form communication processors) bound by strict confidentiality and data protection agreements.</li>
+      </ul>
+
+      <h2>5. Retention Period</h2>
+      <p>Your details are retained only for as long as necessary to complete your inquiry, satisfy warranty obligations on mechanical installations, and fulfill statutory tax and legal requirements under UK law.</p>
+
+      <h2>6. Your Legal Rights Under UK GDPR</h2>
+      <p>You have full legal rights regarding the personal data we hold about you, including:</p>
+      <ul>
+        <li><strong>Right to Access:</strong> Request a copy of the personal information we hold about you.</li>
+        <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete contact details.</li>
+        <li><strong>Right to Erasure:</strong> Request the deletion of your personal data where retention is no longer legally required.</li>
+      </ul>
+      <p>To exercise any of these rights, please contact our team directly at <a href="tel:+447931130886" style="color: var(--teal); font-weight: 600;">+44 7931 130886</a> or by writing to our registered office in Upminster, RM14 1EF.</p>
+
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer-bottom" style="border-top: none;">
-      <p>&copy; 2025 KD Scala Ltd. All rights reserved. Registered Company No. 14398128.</p>
-      <p>Reliable Mechanical &amp; HVAC Services Across London</p>
+    <div class="container footer-inner">
+      <div class="footer-col footer-brand">
+        <img src="kdscala_ltd.png" alt="KD Scala Ltd" class="footer-logo" width="140" height="52" loading="lazy" />
+        <p>Reliable mechanical and HVAC services for residential and commercial properties across London.</p>
+        <p class="footer-reg">Registered in England &amp; Wales<br />Company No. 14398128</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/#service-ac">Air Conditioning</a></li>
+          <li><a href="/#service-heating">Heating &amp; Plumbing</a></li>
+          <li><a href="/#service-ventilation">Ventilation</a></li>
+          <li><a href="/#service-irrigation">Irrigation Systems</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/#why-us">Why Choose Us</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li><a href="privacy-policy.html" style="color: var(--teal);">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+447931130886">+44 7931 130886</a></li>
+          <li>102 Heron Way, Upminster</li>
+          <li>England, RM14 1EF</li>
+        </ul>
+        <a href="tel:+447931130886" class="footer-emergency">
+          <i class="fa-solid fa-phone-volume"></i> Emergency: Call Now
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 KD Scala Ltd. All rights reserved. <span style="opacity: 0.4; margin: 0 8px;">·</span> <a href="privacy-policy.html" style="color: inherit; text-decoration: underline; opacity: 0.8;">Privacy Policy</a></p>
+        <p>Plumbing &amp; Heating | High Quality Service</p>
+      </div>
     </div>
   </footer>
 
