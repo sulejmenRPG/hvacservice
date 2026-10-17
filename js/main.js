@@ -20,6 +20,7 @@ if (burger && navLinks) {
   const closeMenu = () => {
     navLinks.classList.remove('open');
     burger.classList.remove('open');
+    if (navbar) navbar.classList.remove('menu-open');
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   };
@@ -27,6 +28,7 @@ if (burger && navLinks) {
   const openMenu = () => {
     navLinks.classList.add('open');
     burger.classList.add('open');
+    if (navbar) navbar.classList.add('menu-open');
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   };
