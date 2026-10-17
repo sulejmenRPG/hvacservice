@@ -595,46 +595,6 @@ ul { list-style: none; }
   max-width: 480px;
 }
 
-/* ============================
-   PHOTO GRID / MOSAIC
-   ============================ */
-.photo-grid {
-  padding: 0;
-  overflow: hidden;
-}
-.grid-mosaic {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 280px 280px;
-  gap: 4px;
-}
-.grid-item {
-  position: relative;
-  overflow: hidden;
-}
-.grid-item img {
-  transition: transform .6s ease;
-}
-.grid-item:hover img {
-  transform: scale(1.04);
-}
-.grid-item--large {
-  grid-row: 1 / 3;
-}
-.grid-item--wide {
-  grid-column: 2 / 4;
-}
-.grid-item-label {
-  position: absolute;
-  bottom: 14px; left: 14px;
-  background: rgba(7,21,41,.75);
-  backdrop-filter: blur(8px);
-  color: var(--white);
-  padding: 6px 14px;
-  border-radius: 50px;
-  font-size: .78rem;
-  font-weight: 600;
-}
 
 /* ============================
    SERVICES
@@ -943,53 +903,6 @@ ul { list-style: none; }
   font-size: .85rem;
 }
 
-/* ============================
-   WHY CHOOSE US
-   ============================ */
-.why-us {
-  padding: 100px 0;
-  background: var(--off-white);
-}
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-}
-.why-card {
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-lg);
-  padding: 32px 28px;
-  transition: var(--transition);
-}
-.why-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--teal);
-}
-.why-icon {
-  width: 54px; height: 54px;
-  background: linear-gradient(135deg, rgba(14,165,201,.12) 0%, rgba(14,165,201,.06) 100%);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--teal);
-  font-size: 1.3rem;
-  margin-bottom: 20px;
-}
-.why-card h3 {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.why-card p {
-  font-size: .9rem;
-  color: var(--gray-600);
-  line-height: 1.65;
-}
 
 /* ============================
    CONTACT
