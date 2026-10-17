@@ -2,6 +2,24 @@
    MAIN.JS — KD SCALA LTD
    =========================== */
 
+// --- Smooth Image Loading (Fade-In) ---
+function initImageFadeIn() {
+  const images = document.querySelectorAll('.hero-img, .service-card-img img, .about-hero-img');
+  images.forEach((img) => {
+    if (img.complete && img.naturalWidth !== 0) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+      img.addEventListener('error', () => img.classList.add('loaded'), { once: true });
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initImageFadeIn);
+} else {
+  initImageFadeIn();
+}
+
 // --- Smart Navbar: hide on scroll down, show on scroll up ---
 const navbar = document.getElementById('navbar');
 let lastScrollY = window.scrollY;
