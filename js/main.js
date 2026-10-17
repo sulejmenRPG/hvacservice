@@ -20,52 +20,71 @@ if (document.readyState === 'loading') {
   initImageFadeIn();
 }
 
-// --- Smart Navbar: hide on scroll down, show on scroll up ---
+// --- Navigation & Scroll Handler ---
 const navbar = document.getElementById('navbar');
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
 let lastScrollY = window.scrollY;
 let scrollTicking = false;
 let isFormFocused = false;
 
-window.addEventListener('scroll', () => {
-  if (!scrollTicking && navbar) {
-    window.requestAnimationFrame(() => {
-      // If typing in form on mobile, do not recalculate navbar to prevent layout jitter
-      if (isFormFocused) {
-        scrollTicking = false;
-        return;
-      }
+function updateNavigation() {
+  const currentScrollY = window.scrollY;
 
-      const currentScrollY = window.scrollY;
+  // 1. Scrolled styling & smart hide/reveal for navbar
+  if (navbar) {
+    if (currentScrollY > 40) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
 
-      // Scrolled styling
-      if (currentScrollY > 40) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-
-      // Do not hide if mobile menu is open
-      const isMenuOpen = navbar.classList.contains('menu-open');
-
-      // Smart hide / reveal logic
-      if (!isMenuOpen && currentScrollY > 80) {
-        if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY > 6)) {
-          // Scrolling DOWN -> hide header
-          navbar.classList.add('nav-hidden');
-        } else if (lastScrollY - currentScrollY > 6) {
-          // Scrolling UP -> reveal header
-          navbar.classList.remove('nav-hidden');
-        }
-      } else {
+    const isMenuOpen = navbar.classList.contains('menu-open');
+    if (!isFormFocused && !isMenuOpen && currentScrollY > 80) {
+      if (currentScrollY > lastScrollY && (currentScrollY - lastScrollY > 6)) {
+        // Scrolling DOWN -> hide header
+        navbar.classList.add('nav-hidden');
+      } else if (lastScrollY - currentScrollY > 6) {
+        // Scrolling UP -> reveal header
         navbar.classList.remove('nav-hidden');
       }
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+  }
 
-      lastScrollY = Math.max(0, currentScrollY);
-      scrollTicking = false;
+  // 2. Active nav link based on scroll position
+  if (sections.length && navAnchors.length) {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 140;
+      if (currentScrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
     });
+    navAnchors.forEach(a => {
+      const href = a.getAttribute('href');
+      if (href === `#${current}`) {
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
+      }
+    });
+  }
+
+  lastScrollY = Math.max(0, currentScrollY);
+  scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(updateNavigation);
     scrollTicking = true;
   }
 }, { passive: true });
+
+// Run initial pass on page load
+updateNavigation();
 
 // --- Mobile burger menu ---
 const burger = document.getElementById('navBurger');
@@ -132,12 +151,26 @@ revealEls.forEach(el => revealObserver.observe(el));
 // --- Smooth scroll for anchor links ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
+    const targetId = anchor.getAttribute('href');
+    if (!targetId) return;
+
+    // Handle scroll-to-top links like logo or href="#"
+    if (targetId === '#' || targetId === '') {
       e.preventDefault();
-      const offset = 80;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    try {
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    } catch {
+      // Graceful fallback for non-selector hashes
     }
   });
 });
@@ -199,58 +232,6 @@ if (form) {
   });
 }
 
-// --- Animated number counters (stats) ---
-function animateCounter(el, target, duration = 1600) {
-  let start = 0;
-  const isPercent = el.textContent.includes('%');
-  const isPlus = el.textContent.includes('+');
-  const suffix = isPercent ? '%' : isPlus ? '+' : '';
-  const step = target / (duration / 16);
-
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= target) {
-      clearInterval(timer);
-      el.textContent = target + suffix;
-    } else {
-      el.textContent = Math.floor(start) + suffix;
-    }
-  }, 16);
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const text = el.textContent;
-      const num = parseInt(text.replace(/\D/g, ''));
-      if (num) animateCounter(el, num);
-      statsObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.stat-num').forEach(el => statsObserver.observe(el));
-
-// --- Active nav link on scroll ---
-const sections = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
-  });
-  navAnchors.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === `#${current}`) {
-      a.classList.add('active');
-    }
-  });
-});
 
 // --- Copy phone number on click (desktop) ---
 const emergencyPhone = document.getElementById('emergencyPhone');
