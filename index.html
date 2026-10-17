@@ -442,8 +442,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+44 7700 000000" />
+            <label for="phone">Phone Number <span style="font-weight: 400; color: rgba(255,255,255,0.45); font-size: 0.85em;">(recommended for fast response)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7931 130886 or 07..." />
           </div>
           <div class="form-group">
             <label for="service">Service Required</label>
@@ -462,8 +462,14 @@
             <textarea id="message" name="message" rows="4" placeholder="Describe your issue or project…"></textarea>
           </div>
           <button type="submit" class="btn-submit" id="formSubmit">
-            Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>
+            Submit Request <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
           </button>
+          <div id="formSuccessMessage" class="form-success-banner" style="display:none;" role="alert">
+            <i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Thank you! Your request has been received. Our engineer will contact you shortly.
+          </div>
+          <p class="form-privacy-note">
+            <i class="fa-solid fa-shield-halved"></i> We respect your privacy. Details are only used to respond to your inquiry.
+          </p>
         </form>
       </div>
     </div>
@@ -506,6 +512,7 @@
           <li><a href="#about">About Us</a></li>
           <li><a href="#why-us">Why Choose Us</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -522,7 +529,7 @@
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy; 2025 KD Scala Ltd. All rights reserved.</p>
+        <p>&copy; 2025 KD Scala Ltd. All rights reserved. <span style="opacity: 0.4; margin: 0 8px;">·</span> <a href="privacy-policy.html" style="color: inherit; text-decoration: underline; opacity: 0.8;">Privacy Policy</a></p>
         <p>Plumbing &amp; Heating | High Quality Service</p>
       </div>
     </div>
