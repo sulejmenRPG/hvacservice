@@ -1091,34 +1091,6 @@ a.contact-detail:hover {
   box-shadow: 0 10px 30px rgba(14,165,201,.4);
 }
 
-.form-privacy-note {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
-  text-align: center;
-  margin-top: 14px;
-  line-height: 1.4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.form-privacy-note i {
-  color: var(--teal);
-}
-
-.form-success-banner {
-  background: rgba(22, 163, 74, 0.15);
-  border: 1px solid rgba(22, 163, 74, 0.4);
-  color: #4ade80;
-  padding: 14px 18px;
-  border-radius: var(--radius-md);
-  margin-top: 14px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  text-align: center;
-  animation: fadeIn 0.3s ease-in;
-}
-
 /* ============================
    FOOTER
    ============================ */

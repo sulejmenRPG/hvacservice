@@ -143,9 +143,8 @@ if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('formSubmit');
-    const successBanner = document.getElementById('formSuccessMessage');
     const originalContent = btn.innerHTML;
-    btn.innerHTML = 'Submitting… <i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i>';
+    btn.innerHTML = 'Sending <i class="fa-solid fa-circle-notch fa-spin" style="margin-left: 8px;"></i>';
     btn.disabled = true;
 
     // Use native Netlify Forms fetch submission
@@ -157,33 +156,27 @@ if (form) {
         body: new URLSearchParams(formData).toString(),
       });
       if (res.ok) {
-        btn.innerHTML = '✓ Request Submitted!';
-        btn.style.background = '#16a34a';
-        if (successBanner) {
-          successBanner.style.display = 'block';
-        }
+        btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
+        btn.style.background = '#0d9488';
         form.reset();
         setTimeout(() => {
           btn.innerHTML = originalContent;
           btn.style.background = '';
           btn.disabled = false;
-        }, 5000);
+        }, 4000);
       } else {
         throw new Error('Form submission returned non-200');
       }
     } catch {
       // Fallback display
-      btn.innerHTML = '✓ Request Submitted!';
-      btn.style.background = '#16a34a';
-      if (successBanner) {
-        successBanner.style.display = 'block';
-      }
+      btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
+      btn.style.background = '#0d9488';
       form.reset();
       setTimeout(() => {
         btn.innerHTML = originalContent;
         btn.style.background = '';
         btn.disabled = false;
-      }, 5000);
+      }, 4000);
     }
   });
 }
