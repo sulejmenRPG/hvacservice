@@ -274,18 +274,36 @@ ul { list-style: none; }
 .nav-burger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  z-index: 1005;
+  position: relative;
+  width: 44px;
+  height: 44px;
 }
 .nav-burger span {
   display: block;
-  width: 24px; height: 2px;
+  width: 24px;
+  height: 2px;
   background: var(--white);
   border-radius: 2px;
-  transition: var(--transition);
+  transition: transform .3s ease, opacity .3s ease;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-burger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* ============================
@@ -1135,7 +1153,16 @@ a.contact-detail:hover {
 /* ============================
    RESPONSIVE
    ============================ */
+
+/* Hide mobile-only quote link on desktop */
+.nav-links-mobile-quote {
+  display: none;
+}
+
+/* Laptops & Tablets Landscape (iPad Pro) */
 @media (max-width: 1024px) {
+  .nav-inner { gap: 20px; }
+  .nav-links { gap: 20px; }
   .about-top,
   .contact-inner { grid-template-columns: 1fr; gap: 48px; }
   .about-image-stack { height: 380px; min-height: 0; }
@@ -1155,28 +1182,50 @@ a.contact-detail:hover {
   .feature-item { padding: 40px 0; }
 }
 
-@media (max-width: 768px) {
+/* Tablets Portrait (iPads: Air, Mini, 10th gen 768px - 900px) */
+@media (max-width: 900px) {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
+  .btn-quote { display: none; }
+
   .nav-links.open {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--navy-dark);
+    background: rgba(7, 21, 41, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     align-items: center;
     justify-content: center;
-    gap: 32px;
-    z-index: 999;
+    gap: 28px;
+    z-index: 1001;
+    padding: 24px;
   }
   .nav-links.open a {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     color: var(--white);
+    font-weight: 600;
   }
-  .btn-quote { display: none; }
+  .nav-links.open .nav-links-mobile-quote {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+    color: var(--white) !important;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-top: 12px;
+    box-shadow: 0 4px 20px rgba(14,165,201,.35);
+  }
+}
 
-  .hero-title { font-size: 2.8rem; }
-  .hero-sub { font-size: .95rem; }
+/* Small Tablets & Large Phones */
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(2.2rem, 6vw, 3rem); }
+  .hero-sub { font-size: .98rem; }
 
   /* Features */
   .features-left { padding: 40px 0; }
@@ -1197,13 +1246,25 @@ a.contact-detail:hover {
   .form-row { grid-template-columns: 1fr; }
 
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom .container { flex-direction: column; text-align: center; }
+  .footer-bottom .container { flex-direction: column; text-align: center; gap: 10px; }
 
-  .emergency-inner { flex-direction: column; gap: 20px; }
+  .emergency-inner { flex-direction: column; gap: 16px; }
 }
 
+/* Smartphones */
 @media (max-width: 480px) {
-  .hero-btns { flex-direction: column; }
-  .btn-primary, .btn-outline { width: 100%; justify-content: center; }
-  .contact-form-wrap { padding: 28px 20px; }
+  .container { padding: 0 18px; }
+  .hero { padding-top: 100px; padding-bottom: 50px; }
+  .hero-btns { flex-direction: column; width: 100%; gap: 12px; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline,
+  .hero-btns .btn-emergency-hero { 
+    width: 100%; 
+    justify-content: center; 
+    text-align: center;
+  }
+  .hero-title { font-size: 2.1rem; line-height: 1.15; }
+  .section-title { font-size: 1.9rem; }
+  .contact-form-wrap { padding: 24px 18px; }
+  .emergency-number { font-size: clamp(1.7rem, 6.5vw, 2.4rem); }
 }

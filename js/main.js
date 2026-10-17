@@ -16,18 +16,41 @@ window.addEventListener('scroll', () => {
 const burger = document.getElementById('navBurger');
 const navLinks = document.getElementById('navLinks');
 
-burger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-});
-
-// Close menu when clicking a link
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
+if (burger && navLinks) {
+  const closeMenu = () => {
     navLinks.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+  };
+
+  const openMenu = () => {
+    navLinks.classList.add('open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  burger.addEventListener('click', () => {
+    if (navLinks.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
-});
+
+  // Close menu when clicking any navigation link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+}
 
 // --- Scroll reveal animation ---
 const revealEls = document.querySelectorAll('.reveal');
@@ -65,10 +88,11 @@ if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('formSubmit');
-    btn.textContent = 'Sending…';
+    const originalContent = btn.innerHTML;
+    btn.innerHTML = 'Sending… <i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i>';
     btn.disabled = true;
 
-    // If on Netlify — use native Netlify Forms fetch
+    // Use native Netlify Forms fetch submission
     const formData = new FormData(form);
     try {
       const res = await fetch('/', {
@@ -77,24 +101,24 @@ if (form) {
         body: new URLSearchParams(formData).toString(),
       });
       if (res.ok) {
-        btn.textContent = '✓ Message Sent!';
+        btn.innerHTML = '✓ Message Sent!';
         btn.style.background = '#16a34a';
         form.reset();
         setTimeout(() => {
-          btn.textContent = 'Send Message ✈';
+          btn.innerHTML = originalContent;
           btn.style.background = '';
           btn.disabled = false;
         }, 4000);
       } else {
-        throw new Error('Form submission failed');
+        throw new Error('Form submission returned non-200');
       }
     } catch {
-      // Fallback for local/non-Netlify environment
-      btn.textContent = '✓ Message Sent!';
+      // Fallback display
+      btn.innerHTML = '✓ Message Sent!';
       btn.style.background = '#16a34a';
       form.reset();
       setTimeout(() => {
-        btn.textContent = 'Send Message ✈';
+        btn.innerHTML = originalContent;
         btn.style.background = '';
         btn.disabled = false;
       }, 4000);
@@ -173,3 +197,29 @@ if (emergencyPhone && copyTooltip) {
     });
   });
 }
+
+// --- Dynamic settings hydration (from Decap CMS content/settings.json) ---
+fetch('content/settings.json')
+  .then(res => res.ok ? res.json() : null)
+  .then(data => {
+    if (!data) return;
+    if (data.phone) {
+      const cleanPhone = data.phone_raw || data.phone.replace(/[\s\(\)\-]/g, '');
+      document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.setAttribute('href', `tel:${cleanPhone}`);
+      });
+      const em = document.getElementById('emergencyPhone');
+      if (em) em.textContent = data.phone;
+      const cp = document.querySelector('#contactPhone .contact-detail-value');
+      if (cp) cp.textContent = data.phone;
+    }
+    if (data.hero_badge) {
+      const badge = document.querySelector('.hero-badge');
+      if (badge) badge.textContent = data.hero_badge;
+    }
+    if (data.hero_sub) {
+      const sub = document.querySelector('.hero-sub');
+      if (sub) sub.textContent = data.hero_sub;
+    }
+  })
+  .catch(() => {});

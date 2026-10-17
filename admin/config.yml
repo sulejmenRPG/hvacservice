@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site_settings"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Contact & Company Details"
+        file: "content/settings.json"
+        fields:
+          - { label: "Company Phone (Display)", name: "phone", widget: "string" }
+          - { label: "Phone (Raw digits e.g. +447931130886)", name: "phone_raw", widget: "string" }
+          - { label: "Company Email", name: "email", widget: "string" }
+          - { label: "Registered Address", name: "address", widget: "string" }
+          - { label: "Company Number", name: "company_number", widget: "string" }
+          - { label: "Emergency Label", name: "emergency_hours", widget: "string" }
+          - { label: "Hero Badge", name: "hero_badge", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_sub", widget: "text" }
