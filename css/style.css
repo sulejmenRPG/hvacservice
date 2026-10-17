@@ -38,7 +38,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: var(--navy-dark);
 }
 
@@ -199,6 +198,9 @@ ul { list-style: none; }
 }
 .navbar.nav-hidden {
   transform: translateY(-110%);
+}
+.navbar.form-active {
+  display: none !important;
 }
 .nav-inner {
   max-width: 1240px;
@@ -1051,10 +1053,13 @@ a.contact-detail:hover {
   border-radius: var(--radius-sm);
   color: var(--white);
   font-family: var(--font-body);
-  font-size: .95rem;
-  padding: 12px 16px;
+  font-size: 16px !important; /* Strictly prevents iOS auto-zoom and layout twitching */
+  padding: 13px 16px;
   outline: none;
-  transition: var(--transition);
+  transition: border-color .2s ease, background .2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: rgba(255,255,255,.3); }

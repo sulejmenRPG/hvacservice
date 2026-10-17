@@ -6,10 +6,17 @@
 const navbar = document.getElementById('navbar');
 let lastScrollY = window.scrollY;
 let scrollTicking = false;
+let isFormFocused = false;
 
 window.addEventListener('scroll', () => {
   if (!scrollTicking && navbar) {
     window.requestAnimationFrame(() => {
+      // If typing in form on mobile, do not recalculate navbar to prevent layout jitter
+      if (isFormFocused) {
+        scrollTicking = false;
+        return;
+      }
+
       const currentScrollY = window.scrollY;
 
       // Scrolled styling
@@ -120,6 +127,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // --- Contact form handling ---
 const form = document.getElementById('contactForm');
 if (form) {
+  // Prevent fixed navbar rendering collision and layout jitter when virtual keyboard opens
+  form.addEventListener('focusin', () => {
+    isFormFocused = true;
+    if (navbar) navbar.classList.add('form-active');
+  });
+
+  form.addEventListener('focusout', (e) => {
+    if (!form.contains(e.relatedTarget)) {
+      isFormFocused = false;
+      if (navbar) navbar.classList.remove('form-active');
+    }
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('formSubmit');
