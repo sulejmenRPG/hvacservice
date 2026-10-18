@@ -77,8 +77,12 @@
       "Heat Pump Installation",
       "Central Heating Plant Rooms",
       "Commercial Boilers",
+      "Gas Safe Registered Heating Services",
+      "Landlord Gas Safety Certificates CP12",
       "Mechanical Ventilation and Heat Recovery MVHR",
       "Ductwork Engineering",
+      "Swimming Pool and Spa Maintenance",
+      "Pool Plant Room Equipment and Water Treatment",
       "Automated Landscape Irrigation Systems",
       "F-Gas Regulations Compliance",
       "24/7 Emergency Heating and AC Repair"
@@ -130,8 +134,24 @@
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
+            "name": "Gas Safe Inspections & Landlord Safety Certificates (CP12)",
+            "description": "Certified Gas Safe inspections, CP12 landlord certificates, gas boiler servicing, and heating plant room safety checks."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
             "name": "Ventilation Systems & Airflow Management",
             "description": "Air handling unit (AHU) installation, heat recovery (MVHR), kitchen extract systems, and spiral ductwork."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Swimming Pools & Spas Maintenance and Plant Room Servicing",
+            "description": "Cleaning, water testing, chemical balancing, pump and filtration plant room servicing, fault finding, and seasonal preparation for indoor and outdoor pools."
           }
         },
         {
@@ -166,7 +186,7 @@
   <link rel="preload" as="image" href="images/hero-hvac-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
   <link rel="preload" as="image" href="images/hero-hvac.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
 
-  <link rel="stylesheet" href="css/style.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
 
@@ -308,7 +328,8 @@
             <p>We deliver reliable heating and plumbing solutions, from plant room systems to general plumbing works.</p>
             <ul class="service-list">
               <li><i class="fa-solid fa-check"></i> Boiler installation and servicing</li>
-              <li><i class="fa-solid fa-check"></i> Heating system repairs</li>
+              <li><i class="fa-solid fa-check"></i> Gas Safe inspections &amp; Landlord Certificates (CP12)</li>
+              <li><i class="fa-solid fa-check"></i> Heating system diagnostics &amp; repairs</li>
               <li><i class="fa-solid fa-check"></i> Pipework installation and upgrades</li>
               <li><i class="fa-solid fa-check"></i> Hot water systems and cylinders</li>
             </ul>
@@ -331,6 +352,24 @@
               <li><i class="fa-solid fa-check"></i> Airflow balancing</li>
             </ul>
             <a href="#contact" class="service-cta">Book Inspection <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="service-card reveal" id="service-pools">
+          <div class="service-card-img">
+            <img src="images/service-pools.webp" alt="Swimming pool and spa plant room maintenance across London" loading="lazy" />
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon"><i class="fa-solid fa-water-ladder"></i></div>
+            <h3>Swimming Pools &amp; Spas</h3>
+            <p>We provide cleaning, maintenance, and repairs for indoor and outdoor swimming pools and spas. From water treatment to plant room equipment, we help keep your system clean, balanced, and running reliably.</p>
+            <ul class="service-list">
+              <li><i class="fa-solid fa-check"></i> Pool and spa cleaning, water testing, and chemical balancing</li>
+              <li><i class="fa-solid fa-check"></i> Pump, filtration, and water treatment system servicing</li>
+              <li><i class="fa-solid fa-check"></i> Fault finding, equipment repairs, and replacements</li>
+              <li><i class="fa-solid fa-check"></i> Regular maintenance, seasonal opening, and winter preparation</li>
+            </ul>
+            <a href="#contact" class="service-cta">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
@@ -496,7 +535,9 @@
               <option value="">Select a service…</option>
               <option value="air-conditioning">Air Conditioning</option>
               <option value="heating-plumbing">Heating &amp; Plumbing</option>
+              <option value="gas-safety">Gas Safety Check / CP12 Certificate</option>
               <option value="ventilation">Ventilation</option>
+              <option value="swimming-pools">Swimming Pools &amp; Spas</option>
               <option value="irrigation">Irrigation Systems</option>
               <option value="emergency">Emergency Call-Out</option>
               <option value="other">Other</option>

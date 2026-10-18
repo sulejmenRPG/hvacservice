@@ -23,6 +23,7 @@
 
 ### 2. Commercial Heating & Plumbing Plant Rooms
 - **Plant Room Engineering:** Installation, servicing, and pipework fabrication for commercial central heating plant rooms.
+- **Gas Safety & CP12 Certificates:** Certified Gas Safe inspections, Landlord Gas Safety Records (CP12), boiler servicing, and gas system tightness testing.
 - **Commercial & Industrial Boilers:** Condensing boilers, cascade systems, circulation pumps, expansion vessels, pressurisation units, and hydraulic separators.
 - **Diagnostics & Repair:** Pressure loss tracing, heat exchanger flushing, motorised valve replacement, pump rebuilds, and power flushing.
 - **Residential Plumbing & Heating:** Luxury bathroom plumbing, underfloor heating manifolds, unvented hot water cylinders (Megaflo), and system balancing.
@@ -31,11 +32,17 @@
 - **Ventilation Systems:** Commercial air handling units (AHU), heat recovery systems (MVHR), kitchen extract ventilation, and spiral galvanized steel ductwork.
 - **Airflow & Balancing:** Air balancing, filter replacement (HEPA/carbon), acoustic attenuation, and building regulation compliance.
 
-### 4. Automated Irrigation Systems
+### 4. Swimming Pools & Spas
+- **Pool & Spa Maintenance:** Cleaning, routine servicing, and repairs for indoor and outdoor swimming pools, hydrotherapy pools, and luxury spas.
+- **Water Chemistry & Treatment:** Water testing, pH and chemical balancing, sanitization, and water treatment equipment checks.
+- **Plant Room Equipment:** Servicing, fault finding, and replacement of circulation pumps, sand and cartridge filters, heat exchangers, and pool heat pumps.
+- **Seasonal Servicing:** Spring opening commissioning, water clarity restoration, and autumn/winter preparation and protection.
+
+### 5. Automated Irrigation Systems
 - **Smart Irrigation:** Pop-up sprinkler systems, drip micro-irrigation, commercial landscape watering, smart Wi-Fi controllers, and weather-sensor automation.
 - **Water Efficiency:** Backflow prevention, pressure regulation, winterization blowouts, and seasonal commissioning.
 
-### 5. 24/7 Emergency HVAC Call-Out
+### 6. 24/7 Emergency HVAC Call-Out
 - **Rapid Response:** Rapid dispatch across East London, Central London, and Essex for critical boiler outages, AC failures in server rooms or offices, burst pipes, and heating breakdowns.
 - **Emergency Contact:** +44 7931 130886.
 

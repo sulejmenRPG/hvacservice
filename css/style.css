@@ -636,8 +636,17 @@ ul { list-style: none; }
 }
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 28px;
+}
+#service-ac,
+#service-heating,
+#service-ventilation {
+  grid-column: span 2;
+}
+#service-pools,
+#service-irrigation {
+  grid-column: span 3;
 }
 .service-card {
   background: rgba(255, 255, 255, 0.035);
@@ -1166,6 +1175,15 @@ a.contact-detail:hover .contact-detail-label {
   .about-grid-3 { grid-template-columns: 1fr 1fr; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr 1fr; }
+  #service-ac,
+  #service-heating,
+  #service-ventilation,
+  #service-pools {
+    grid-column: auto;
+  }
+  #service-irrigation {
+    grid-column: span 2;
+  }
   
   /* Features section */
   .features-inner { grid-template-columns: 1fr; min-height: auto; }
@@ -1270,6 +1288,13 @@ a.contact-detail:hover .contact-detail-label {
   .feature-num { font-size: 1.2rem; padding: 0; }
 
   .services-grid { grid-template-columns: 1fr; }
+  #service-ac,
+  #service-heating,
+  #service-ventilation,
+  #service-pools,
+  #service-irrigation {
+    grid-column: auto;
+  }
   .about-grid-3 { grid-template-columns: 1fr; }
   .about-cta-row { flex-direction: column; }
   .about-cta-row .btn-primary,
