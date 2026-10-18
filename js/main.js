@@ -198,16 +198,17 @@ if (form) {
     btn.innerHTML = 'Sending <i class="fa-solid fa-circle-notch fa-spin" style="margin-left: 8px;"></i>';
     btn.disabled = true;
 
-    const payload = {
-      name: (form.name ? form.name.value : '').trim(),
-      email: (form.email ? form.email.value : '').trim(),
-      phone: (form.phone ? form.phone.value : '').trim(),
-      service: form.service ? form.service.value : '',
-      message: (form.message ? form.message.value : '').trim(),
-      'bot-field': form.querySelector('[name="bot-field"]')?.value || '',
-    };
-
     try {
+      const formData = new FormData(form);
+      const payload = {
+        name: (formData.get('name') || '').trim(),
+        email: (formData.get('email') || '').trim(),
+        phone: (formData.get('phone') || '').trim(),
+        service: formData.get('service') || '',
+        message: (formData.get('message') || '').trim(),
+        'bot-field': formData.get('bot-field') || '',
+      };
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -228,10 +229,8 @@ if (form) {
       }, 4000);
     } catch (err) {
       console.error('Contact form submission error:', err);
-      // Fallback display to ensure smooth user experience
-      btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
-      btn.style.background = '#0d9488';
-      form.reset();
+      btn.innerHTML = 'Failed to send <i class="fa-solid fa-triangle-exclamation" style="margin-left: 8px;"></i>';
+      btn.style.background = '#dc2626';
       setTimeout(() => {
         btn.innerHTML = originalContent;
         btn.style.background = '';
