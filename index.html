@@ -162,10 +162,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- LCP Hero Image Preload -->
-  <link rel="preload" as="image" href="images/hero-hvac.webp" type="image/webp" fetchpriority="high" />
+  <!-- LCP Hero Image Preload (Adaptive Mobile & Desktop) -->
+  <link rel="preload" as="image" href="images/hero-hvac-mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/hero-hvac.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 </head>
 <body>
 
@@ -197,7 +198,10 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg">
-      <img src="images/hero-hvac.webp" alt="Commercial HVAC rooftop installation across London" class="hero-img" fetchpriority="high" />
+      <picture>
+        <source media="(max-width: 768px)" srcset="images/hero-hvac-mobile.webp" type="image/webp" />
+        <img src="images/hero-hvac.webp" alt="Commercial HVAC rooftop installation across London" class="hero-img" fetchpriority="high" />
+      </picture>
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content container">
