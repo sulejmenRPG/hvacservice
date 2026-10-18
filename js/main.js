@@ -233,24 +233,76 @@ if (form) {
 }
 
 
-// --- Copy phone number on click (desktop) ---
-const emergencyPhone = document.getElementById('emergencyPhone');
-const copyTooltip = document.getElementById('copyTooltip');
+// --- Desktop Click-to-Copy Handlers (with clean icon feedback, no emojis) ---
+function initDesktopClipboard() {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (isMobile) return; // On mobile, tel: and mailto: work natively with installed apps
 
-if (emergencyPhone && copyTooltip) {
-  emergencyPhone.addEventListener('click', (e) => {
-    // On mobile, let the tel: link work naturally
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) return;
+  // 1. Emergency Banner Phone
+  const emergencyPhone = document.getElementById('emergencyPhone');
+  const copyTooltip = document.getElementById('copyTooltip');
+  if (emergencyPhone && copyTooltip) {
+    emergencyPhone.addEventListener('click', (e) => {
+      e.preventDefault();
+      const phone = emergencyPhone.textContent.trim();
+      navigator.clipboard.writeText(phone).then(() => {
+        copyTooltip.classList.add('show');
+        setTimeout(() => copyTooltip.classList.remove('show'), 2000);
+      });
+    });
+  }
 
-    e.preventDefault();
-    const phone = emergencyPhone.textContent.trim();
-    navigator.clipboard.writeText(phone).then(() => {
-      copyTooltip.classList.add('show');
-      setTimeout(() => copyTooltip.classList.remove('show'), 2000);
+  // Helper for contact cards (#contactPhone, #contactEmail)
+  function attachCardCopy(cardId, defaultText) {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const valEl = card.querySelector('.contact-detail-value');
+      const labelEl = card.querySelector('.contact-detail-label');
+      const iconEl = card.querySelector('.contact-detail-icon i');
+      const textToCopy = valEl ? valEl.textContent.trim() : defaultText;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        if (labelEl && iconEl) {
+          const originalLabel = labelEl.innerHTML;
+          const originalIconClass = iconEl.className;
+
+          labelEl.innerHTML = `<span style="color: #2dd4bf;"><i class="fa-solid fa-check" style="margin-right: 5px;"></i>Copied to clipboard</span>`;
+          iconEl.className = 'fa-solid fa-check';
+          card.style.borderColor = 'rgba(45, 212, 191, 0.45)';
+
+          setTimeout(() => {
+            labelEl.innerHTML = originalLabel;
+            iconEl.className = originalIconClass;
+            card.style.borderColor = '';
+          }, 2200);
+        }
+      });
+    });
+  }
+
+  attachCardCopy('contactPhone', '+44 7931 130886');
+  attachCardCopy('contactEmail', 'info@kdscala.co.uk');
+
+  // 2. Footer Email Links
+  document.querySelectorAll('footer a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = 'info@kdscala.co.uk';
+      navigator.clipboard.writeText(email).then(() => {
+        const originalHtml = link.innerHTML;
+        link.innerHTML = `${email} <span style="color: #2dd4bf; margin-left: 6px; font-size: 0.85em;"><i class="fa-solid fa-check"></i> Copied</span>`;
+        setTimeout(() => {
+          link.innerHTML = originalHtml;
+        }, 2200);
+      });
     });
   });
 }
+
+initDesktopClipboard();
 
 // --- Dynamic settings hydration (from Decap CMS content/settings.json) ---
 fetch('content/settings.json')
