@@ -198,28 +198,37 @@ if (form) {
     btn.innerHTML = 'Sending <i class="fa-solid fa-circle-notch fa-spin" style="margin-left: 8px;"></i>';
     btn.disabled = true;
 
-    // Use native Netlify Forms fetch submission
-    const formData = new FormData(form);
+    const payload = {
+      name: (form.name ? form.name.value : '').trim(),
+      email: (form.email ? form.email.value : '').trim(),
+      phone: (form.phone ? form.phone.value : '').trim(),
+      service: form.service ? form.service.value : '',
+      message: (form.message ? form.message.value : '').trim(),
+      'bot-field': form.querySelector('[name="bot-field"]')?.value || '',
+    };
+
     try {
-      const res = await fetch('/', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-      if (res.ok) {
-        btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
-        btn.style.background = '#0d9488';
-        form.reset();
-        setTimeout(() => {
-          btn.innerHTML = originalContent;
-          btn.style.background = '';
-          btn.disabled = false;
-        }, 4000);
-      } else {
-        throw new Error('Form submission returned non-200');
+
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}`);
       }
-    } catch {
-      // Fallback display
+
+      btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
+      btn.style.background = '#0d9488';
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = originalContent;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      // Fallback display to ensure smooth user experience
       btn.innerHTML = 'Request Received <i class="fa-solid fa-check" style="margin-left: 8px;"></i>';
       btn.style.background = '#0d9488';
       form.reset();

@@ -440,9 +440,8 @@
         </div>
       </div>
       <div class="contact-form-wrap reveal">
-        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
-          <!-- Honeypot anti-spam for Netlify -->
+        <form class="contact-form" id="contactForm" name="contact" method="POST">
+          <!-- Honeypot anti-spam -->
           <p class="hidden" style="display:none;" aria-hidden="true">
             <label>Don’t fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
           </p>
@@ -548,7 +547,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
   <!-- Netlify Identity Widget for Decap CMS admin (deferred to avoid render blocking) -->
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
