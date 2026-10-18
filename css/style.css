@@ -852,78 +852,63 @@ ul { list-style: none; }
   border-color: rgba(14,165,201,.2);
 }
 .about-card-highlight {
-  background: linear-gradient(145deg, rgba(14,165,201,.08) 0%, rgba(14,165,201,.02) 100%);
-  border-color: rgba(14,165,201,.2);
+  background: linear-gradient(145deg, rgba(45, 212, 191, 0.08) 0%, rgba(45, 212, 191, 0.02) 100%);
+  border-color: rgba(45, 212, 191, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
 .about-card-icon {
-  width: 52px; height: 52px;
-  background: rgba(14,165,201,.1);
-  border-radius: var(--radius-sm);
+  width: 48px; height: 48px;
+  background: rgba(45, 212, 191, 0.09);
+  border: 1px solid rgba(45, 212, 191, 0.22);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--teal);
-  font-size: 1.2rem;
-  margin-bottom: 24px;
+  color: #2dd4bf;
+  font-size: 1.15rem;
+  margin-bottom: 22px;
+  transition: all 0.25s ease;
+}
+.about-card:hover .about-card-icon {
+  background: rgba(45, 212, 191, 0.20);
+  border-color: rgba(45, 212, 191, 0.45);
+  transform: scale(1.05);
 }
 .about-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   font-weight: 700;
   color: var(--white);
   line-height: 1.3;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 .about-card p {
-  color: rgba(255,255,255,.84);
+  color: rgba(255,255,255,.76);
   font-size: .92rem;
   line-height: 1.65;
-  margin-bottom: 16px;
-}
-.about-card-sub {
-  color: var(--teal);
-  font-size: .85rem;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  margin: 16px 0 12px;
+  margin-bottom: 24px;
 }
 .about-card-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.07);
 }
 .about-card-list li {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   color: rgba(255,255,255,.88);
-  font-size: .9rem;
-  line-height: 1.5;
-}
-.about-card-list.check-list li {
-  color: var(--white);
-  font-weight: 500;
+  font-size: .90rem;
+  line-height: 1.45;
 }
 .about-card-list li i {
-  color: var(--teal);
-  font-size: .9rem;
-  margin-top: 3px;
-}
-
-.about-cta-box {
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,.08);
-}
-.about-cta-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.about-cta-row .btn-primary, 
-.about-cta-row .btn-secondary {
-  padding: 11px 22px;
-  font-size: .85rem;
+  color: #2dd4bf;
+  font-size: .92rem;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 
