@@ -2,4 +2,25 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
+# AI Search Crawlers (ChatGPT, Gemini, Perplexity, Claude, Apple Intelligence)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap & LLMs context
 Sitemap: https://kdscala.co.uk/sitemap.xml
+# LLM Knowledge Profile: https://kdscala.co.uk/llms.txt
