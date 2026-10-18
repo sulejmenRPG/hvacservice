@@ -238,6 +238,32 @@ function initDesktopClipboard() {
   const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if (isMobile) return; // On mobile, tel: and mailto: work natively with installed apps
 
+  function copyTextSafe(text, callback) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(callback).catch(() => {
+        execFallbackCopy(text, callback);
+      });
+    } else {
+      execFallbackCopy(text, callback);
+    }
+  }
+
+  function execFallbackCopy(text, callback) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (callback) callback();
+    } catch (err) {
+      console.error('Clipboard copy failed:', err);
+    }
+  }
+
   // 1. Emergency Banner Phone
   const emergencyPhone = document.getElementById('emergencyPhone');
   const copyTooltip = document.getElementById('copyTooltip');
@@ -245,7 +271,7 @@ function initDesktopClipboard() {
     emergencyPhone.addEventListener('click', (e) => {
       e.preventDefault();
       const phone = emergencyPhone.textContent.trim();
-      navigator.clipboard.writeText(phone).then(() => {
+      copyTextSafe(phone, () => {
         copyTooltip.classList.add('show');
         setTimeout(() => copyTooltip.classList.remove('show'), 2000);
       });
@@ -264,7 +290,7 @@ function initDesktopClipboard() {
       const iconEl = card.querySelector('.contact-detail-icon i');
       const textToCopy = valEl ? valEl.textContent.trim() : defaultText;
 
-      navigator.clipboard.writeText(textToCopy).then(() => {
+      copyTextSafe(textToCopy, () => {
         if (labelEl && iconEl) {
           const originalLabel = labelEl.innerHTML;
           const originalIconClass = iconEl.className;
@@ -291,7 +317,7 @@ function initDesktopClipboard() {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const email = 'info@kdscala.co.uk';
-      navigator.clipboard.writeText(email).then(() => {
+      copyTextSafe(email, () => {
         const originalHtml = link.innerHTML;
         link.innerHTML = `${email} <span style="color: #2dd4bf; margin-left: 6px; font-size: 0.85em;"><i class="fa-solid fa-check"></i> Copied</span>`;
         setTimeout(() => {
