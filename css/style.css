@@ -942,56 +942,71 @@ ul { list-style: none; }
 }
 .contact-info .section-title { color: var(--white); }
 .contact-sub {
-  color: rgba(255,255,255,.84);
+  color: rgba(255,255,255,.76);
   font-size: .95rem;
   line-height: 1.7;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 .contact-details {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  border-top: 1px solid rgba(255,255,255,.08);
 }
 .contact-detail {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  background: rgba(255,255,255,.05);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255,255,255,.08);
-  transition: var(--transition);
+  align-items: center;
+  gap: 18px;
+  padding: 16px 8px;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+a.contact-detail {
+  cursor: pointer;
 }
 a.contact-detail:hover {
-  background: rgba(14,165,201,.1);
-  border-color: rgba(14,165,201,.3);
+  padding-left: 14px;
+  background: rgba(45, 212, 191, 0.05);
+  border-bottom-color: rgba(45, 212, 191, 0.35);
 }
 .contact-detail-icon {
-  width: 40px; height: 40px;
-  background: var(--teal);
-  border-radius: var(--radius-sm);
+  width: 42px; height: 42px;
+  background: rgba(45, 212, 191, 0.09);
+  border: 1px solid rgba(45, 212, 191, 0.22);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
-  font-size: 1rem;
+  color: #2dd4bf;
+  font-size: 0.95rem;
   flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+a.contact-detail:hover .contact-detail-icon {
+  background: rgba(45, 212, 191, 0.20);
+  border-color: rgba(45, 212, 191, 0.45);
+  transform: scale(1.05);
 }
 .contact-detail-label {
   display: block;
-  font-size: .72rem;
-  color: var(--teal);
+  font-size: .70rem;
+  color: #94a3b8;
   font-weight: 600;
-  letter-spacing: .06em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   margin-bottom: 3px;
+  transition: color 0.2s ease;
+}
+a.contact-detail:hover .contact-detail-label {
+  color: #2dd4bf;
 }
 .contact-detail-value {
   display: block;
   color: var(--white);
-  font-size: .92rem;
+  font-size: .95rem;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 /* FORM */
